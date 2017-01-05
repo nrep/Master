@@ -20,6 +20,9 @@ public class People {
         this.descript = descript;
         this.email = email;
     }
+    public People(String username){
+        this.username  = username;
+    }
     public String getUsername(){
         return username;
     }
