@@ -10,16 +10,26 @@ public class People {
     private String sex;
     private int age;
     private String descript;
-    public  People(String username, String sex, String tel, int age, String address,  String descript){
+    private String email;
+    public  People(String username, String sex, String tel,String email, int age, String address,  String descript){
         this.username = username;
         this.sex = sex;
         this.tel = tel;
         this.age = age;
         this.address = address;
         this.descript = descript;
+        this.email = email;
     }
     public String getUsername(){
         return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getAge() {
