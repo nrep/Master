@@ -1,7 +1,7 @@
-package Database;
+package Bean;
 
 /**
- * Created by YocyTang on 2017/1/4.
+ * Created by YocyTang on 2017/1/8.
  */
 public class People {
     private String username;
