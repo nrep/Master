@@ -2,7 +2,7 @@ package Dao;
 
 import Bean.People;
 import Database.Database;
-import groovy.sql.Sql;
+
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Utils.Print.print;
+
 
 /**
  * Created by YocyTang on 2017/1/8.
@@ -56,7 +56,7 @@ public class PeopleDao {
         String username = people.getUsername();
 
         if(username == null) return false;
-        
+
         String sql = "delete from manager where username = ?";
         PreparedStatement preparedStatement = database.getPreparedStatement(sql);
         int flag = 0;

@@ -1,5 +1,9 @@
 package Bean;
 
+
+
+import static Utils.Replace.replace;
+
 /**
  * Created by YocyTang on 2017/1/8.
  */
@@ -11,7 +15,13 @@ public class People {
     private int age;
     private String descript;
     private String email;
-    public  People(String username, String sex, String tel,String email, int age, String address,  String descript){
+    public  People(String username, String sex, String tel,String email, int age, String address,  String descript) {
+        username = replace(username);
+        sex = replace(sex);
+        tel = replace(tel);
+        email = replace(email);
+        address = replace(address);
+        descript = replace(descript);
         this.username = username;
         this.sex = sex;
         this.tel = tel;
@@ -20,7 +30,11 @@ public class People {
         this.descript = descript;
         this.email = email;
     }
-    public People(String username){
+
+    public People(String username) throws Exception{
+        if(username == null||username.length() == 0){
+            throw new Exception("not null");
+        }
         this.username  = username;
     }
     public String getUsername(){
@@ -32,6 +46,7 @@ public class People {
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
@@ -84,4 +99,5 @@ public class People {
         return "username: "+username+" ||"+" sex: "+sex+" ||"+" address: "+address+" || "+" age: "+age+" || "+"tel: " +
                 tel+" descript "+descript;
     }
+
 }
