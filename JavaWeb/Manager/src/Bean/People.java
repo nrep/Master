@@ -15,13 +15,15 @@ public class People {
     private int age;
     private String descript;
     private String email;
-    public  People(String username, String sex, String tel,String email, int age, String address,  String descript) {
+    private String admin;
+    public  People(String username, String sex, String tel,String email, int age, String address,  String descript,String admin) {
         username = replace(username);
         sex = replace(sex);
         tel = replace(tel);
         email = replace(email);
         address = replace(address);
         descript = replace(descript);
+        admin= replace(admin);
         this.username = username;
         this.sex = sex;
         this.tel = tel;
@@ -29,12 +31,10 @@ public class People {
         this.address = address;
         this.descript = descript;
         this.email = email;
+        this.admin = admin;
     }
 
-    public People(String username) throws Exception{
-        if(username == null||username.length() == 0){
-            throw new Exception("not null");
-        }
+    public People(String username) {
         this.username  = username;
     }
     public String getUsername(){
@@ -60,6 +60,14 @@ public class People {
 
     public String getDescript() {
         return descript;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
+    public String getAdmin() {
+        return admin;
     }
 
     public String getSex() {

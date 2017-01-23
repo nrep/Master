@@ -28,10 +28,11 @@ public class PeopleDao {
         String descript = people.getDescript();
         String tel = people.getTel();
         String email = people.getEmail();
+        String admin = people.getAdmin();
         if(username==null|| sex == null|| age == null|| address==null||tel==null||email ==null){
             return false;
         }
-        String sql= "insert into manager (username, sex, age, address, descript, tel, email) values (?,?,?,?,?,?,?)";
+        String sql= "insert into manager (username, sex, age, address, descript, tel, email,admin) values (?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement= database.getPreparedStatement(sql);
         int flag = 0;
         try {
@@ -42,6 +43,7 @@ public class PeopleDao {
             preparedStatement.setString(5,descript);
             preparedStatement.setString(6,tel);
             preparedStatement.setString(7,email);
+            preparedStatement.setString(8,admin);
             flag = preparedStatement.executeUpdate();
             if(flag>0){
                 return true;
@@ -92,6 +94,7 @@ public class PeopleDao {
                 String email = resultSet.getString("email");
                 String tel = resultSet.getString("tel");
                 String descript = resultSet.getString("descript");
+
                 people.setAddress(address);
                 people.setAge(age);
                 people.setSex(sex);
@@ -130,8 +133,9 @@ public class PeopleDao {
                 String tel = resultSet.getString("tel");
                 String email = resultSet.getString("email");
                 String descript = resultSet.getString("descript");
+                String admin = resultSet.getString("admin");
                 int age = resultSet.getInt("age");
-                people = new People(username,sex,tel,email,age,address,descript);
+                people = new People(username,sex,tel,email,age,address,descript,admin);
                 res.add(people);
             }
         }catch (SQLException e){
@@ -156,10 +160,11 @@ public class PeopleDao {
         String tel = people.getTel();
         String descript = people.getDescript();
         Integer age = people.getAge();
+        String admin =people.getAdmin();
         if(username == null||sex==null||age == null||tel == null||email==null||address==null){
             return false;
         }
-        String sql = "update manager set sex =?, age = ?, email = ?, tel=?,address=?,descript=? where username=?";
+        String sql = "update manager set sex =?, age = ?, email = ?, tel=?,address=?,descript=?,admin=?where username=?";
         PreparedStatement preparedStatement = database.getPreparedStatement(sql);
         int flag = 0;
         try{
@@ -169,7 +174,8 @@ public class PeopleDao {
             preparedStatement.setString(4,tel);
             preparedStatement.setString(5,address);
             preparedStatement.setString(6,descript);
-            preparedStatement.setString(7,username);
+            preparedStatement.setString(8,username);
+            preparedStatement.setString(7,admin);
             flag = preparedStatement.executeUpdate();
             preparedStatement.close();
             if(flag>0){
