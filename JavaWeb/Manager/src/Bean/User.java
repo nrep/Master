@@ -41,6 +41,7 @@ public class User {
     }
 
     public void setPassword(String password) {
+        password = getHash(password);
         this.password = password;
     }
 
