@@ -8,6 +8,7 @@ public class User {
     private String password;
     private String username;
     private String email;
+    private String newPassword;
     public User(String username, String password, String email){
         username = replace(username);
         email = replace(email);
@@ -16,9 +17,14 @@ public class User {
         this.password = password;
         this.email  = email;
     }
+    public User(String username, String password, String email, String newPassword){
+        this(username,password,email);
+        newPassword = getHash(newPassword);
+        this.newPassword = newPassword;
+    }
     public User(String username, String email){
-        this.username = username;
         this.email = email;
+        this.username = username;
     }
     public String getEmail() {
         return email;

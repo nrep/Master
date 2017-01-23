@@ -43,7 +43,8 @@ public class Register extends HttpServlet {
         BufferedReader bufferedReader = req.getReader();
         String data = bufferedReader.readLine();
         Gson gson = new Gson();
-        gson.fromJson(data, User.class);
+        User user = gson.fromJson(data, User.class);
+        RegisterService registerService = new RegisterService(user);
         
     }
 }

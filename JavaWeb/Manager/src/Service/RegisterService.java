@@ -4,6 +4,7 @@ import Bean.User;
 import Dao.UserDao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by YocyTang on 2017/1/23.
@@ -28,6 +29,21 @@ public class RegisterService {
             userDao.delete(user);
         }catch (SQLException e){
             return  false;
+        }
+        return true;
+    }
+    public List<User> query(int page, int limit){
+        List<User> res = userDao.query(page, limit);
+        return res;
+    }
+    public List<User> query(int page){
+        List<User> res = query(page, 10);
+        return res;
+    }
+    public boolean query(){
+        User res = userDao.query(user);
+        if(res==null){
+            return false;
         }
         return true;
     }
