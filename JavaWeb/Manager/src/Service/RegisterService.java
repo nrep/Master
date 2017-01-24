@@ -17,10 +17,15 @@ public class RegisterService {
         this.userDao = new UserDao();
     }
     public boolean add(){
+        if(query()){
+            return false;
+        };
+        userDao = new UserDao();
+        user.hashPassword();
         try{
             userDao.add(user);
         }catch (SQLException e){
-            return false;
+            e.printStackTrace();
         }
         return true;
     }

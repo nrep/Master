@@ -1,5 +1,6 @@
 package Servlet;
 
+import Bean.ErrorInfo;
 import Bean.User;
 import Service.RegisterService;
 import com.google.gson.Gson;
@@ -10,12 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by YocyTang on 2017/1/10.
  */
 public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         BufferedReader bufferedReader = request.getReader();
         Gson gson = new Gson();
         String data = bufferedReader.readLine();
@@ -29,8 +34,13 @@ public class Register extends HttpServlet {
         if(flag){
             response.setStatus(200);
             return;
+        }else{
+            PrintWriter out = response.getWriter();
+            ErrorInfo errorInfo = new ErrorInfo("用户名已经被注册");
+            String json = gson.toJson(errorInfo);
+            out.print(json);
         }
-        response.sendError(500);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
