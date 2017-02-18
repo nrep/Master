@@ -1,5 +1,6 @@
 package Utils;
 
+import com.intellij.vcs.log.Hash;
 import io.netty.handler.codec.base64.Base64Encoder;
 
 import java.security.*;
@@ -41,6 +42,12 @@ public class HashPassword {
     public static boolean checkHash(String pwd, String hash){
         String hashPwd = getHash(pwd);
         return hashPwd.equals(hash);
+    }
+    public static void main(String[] args){
+
+        String ps = getHash("codehuman");
+        print(ps);
+        print(checkHash("codehuman", ps));
     }
 
 }

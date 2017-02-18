@@ -9,29 +9,27 @@ public class User {
     private String username;
     private String email;
     private String newPassword;
-    private boolean isHashed=false;
+
     public User(String username, String password, String email){
         username = replace(username);
         email = replace(email);
-        password = getHash(password);
-        isHashed=true;
         this.username = username;
         this.password = password;
         this.email  = email;
     }
     public void hashPassword(){
-        if (!isHashed){
             this.password = getHash(this.password);
-        }
+
     }
     public User(String username, String password, String email, String newPassword){
         this(username,password,email);
         newPassword = getHash(newPassword);
         this.newPassword = newPassword;
     }
-    public User(String username, String email){
-        this.email = email;
+
+    public User(String username, String password){
         this.username = username;
+        this.password = password;
     }
     public String getEmail() {
         return email;

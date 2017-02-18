@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Utils.Print.print;
+
 /**
  * Created by YocyTang on 2017/1/10.
  */
@@ -73,9 +75,10 @@ public class UserDao {
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
-                String email = resultSet.getString("email");
+
                 String password = resultSet.getString("password");
-                res = new User(username, password, password);
+
+                res = new User(username, password);
             }
         }catch (SQLException e){
             e.printStackTrace();
