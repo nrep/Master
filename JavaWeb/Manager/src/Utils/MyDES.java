@@ -8,9 +8,11 @@ import static Utils.Print.print;
 
 /**
  * Created by YocyTang on 2017/2/18.
+ * DES加密
  */
 public class MyDES
 {
+    //设置默认的key值
     private static  String strDefaultKey="codehuman";
     private Cipher encryptCipher = null;
     private  Cipher decrypyCipher = null;
@@ -31,6 +33,7 @@ public class MyDES
         }
         return sb.toString();
     }
+    //将16进制的字符串转换为byte数组
     public static byte[] hexStrToByteArr(String str) throws Exception{
         byte[] arr = str.getBytes();
         int len = arr.length;
@@ -41,6 +44,8 @@ public class MyDES
         }
         return out;
     }
+
+    //构造函数
     public MyDES() throws Exception{
         this(strDefaultKey);
     }
@@ -53,6 +58,8 @@ public class MyDES
         decrypyCipher.init(Cipher.DECRYPT_MODE, key);
 
     }
+
+    //加密和解密
     public byte[] encrypt(byte[] arr) throws  Exception{
         return encryptCipher.doFinal(arr);
     }
@@ -65,6 +72,7 @@ public class MyDES
     public String decrypt(String in) throws Exception{
         return new String(decrypt(hexStrToByteArr(in)));
     }
+    //获取key，由于DES加密使用8个字符的key，所以如果超出则截断，不足时在后面补0
     private Key getKey(byte[] arr) throws Exception{
         byte[] arrB = new byte[8];
         for(int i = 0; i< arr.length&& i<arrB.length; i++){

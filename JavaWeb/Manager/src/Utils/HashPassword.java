@@ -1,10 +1,9 @@
 package Utils;
 
-import com.intellij.vcs.log.Hash;
-import io.netty.handler.codec.base64.Base64Encoder;
+
 
 import java.security.*;
-import java.util.Base64;
+
 
 import static Utils.Print.print;
 
@@ -12,6 +11,7 @@ import static Utils.Print.print;
  * Created by YocyTang on 2017/1/10.
  */
 public class HashPassword {
+    //SHA单向散列算法
     public static String getHash(String pwd) {
         try{
             MessageDigest alga = MessageDigest.getInstance("SHA");
@@ -23,6 +23,7 @@ public class HashPassword {
         }
 
     }
+    //将byte数组转换为16进制的字符串
     private static String byteToHex(byte[] b){
         String hs = "";
         String stmp = "";
@@ -39,6 +40,7 @@ public class HashPassword {
         }
         return hs.toLowerCase();
     }
+    //验证一个字符串的hash值是否和hash字符串相等
     public static boolean checkHash(String pwd, String hash){
         String hashPwd = getHash(pwd);
         return hashPwd.equals(hash);

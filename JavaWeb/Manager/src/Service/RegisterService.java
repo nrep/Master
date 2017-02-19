@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Created by YocyTang on 2017/1/23.
+ * 注册服务
  */
 public class RegisterService {
     private User user;

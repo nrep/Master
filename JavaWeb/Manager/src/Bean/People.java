@@ -6,6 +6,7 @@ import static Utils.Replace.replace;
 
 /**
  * Created by YocyTang on 2017/1/8.
+ * 客户
  */
 public class People {
     private String username;

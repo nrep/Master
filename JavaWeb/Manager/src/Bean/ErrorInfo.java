@@ -2,6 +2,7 @@ package Bean;
 
 /**
  * Created by YocyTang on 2017/1/24.
+ * 用于构建错误的json信息
  */
 public class ErrorInfo {
     private String information;

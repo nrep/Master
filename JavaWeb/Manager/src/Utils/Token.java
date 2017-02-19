@@ -13,7 +13,7 @@ import static Utils.Print.print;
  * Created by YocyTang on 2017/2/14.
  */
 public class Token
-{
+{   //设置token的过期时间
     private static long expireTime = 60*60*1000;
     private String targetFiled;
     public Token(String targetFiled, long expireTime){
@@ -25,12 +25,14 @@ public class Token
     }
     public Token(){}
     private static MyDES myDES;
+    //这里的token使用简单的用户名加时间戳的格式，“Yocy 2131321132131”
     private String getToken(String username){
         Date date = new Date();
         long time = date.getTime();
         String target = username+" "+String.valueOf(time);
         String token = null;
         try{
+            //使用编写的DES加密targetField
             myDES = new MyDES();
             token = myDES.encrypt(target);
         }catch (Exception e){
@@ -38,7 +40,7 @@ public class Token
         }
         return token;
     }
-
+    //解析token
     public String getToken(){
         return getToken(targetFiled);
     }
@@ -51,6 +53,7 @@ public class Token
         }
         return res;
     }
+    //由token中获取用户名
     public String getUsername(String token){
         String res = parseToken(token);
         int len = res.length();
@@ -63,6 +66,7 @@ public class Token
         }
         return res.substring(0,index);
     }
+    //验证token是否合法和过期，合法为用户名一样且expire值在允许范围内。
     public boolean isValidToken(String token,String username){
         String res = parseToken(token);
         int len = res.length();

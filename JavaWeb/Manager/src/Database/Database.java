@@ -6,6 +6,7 @@ import static Utils.Print.print;
 
 /**
  * Created by YocyTang on 2017/1/3.
+ * 数据库的连接和关闭
  */
 public class Database {
     private final String USER;
@@ -54,6 +55,7 @@ public class Database {
         setPreparedStatement(sql);
         return preparedStatement;
     }
+    //为了灵活性，需要传入得到的ResultSet
     public void close(ResultSet resultSet){
         try{
             resultSet.close();
@@ -88,6 +90,7 @@ public class Database {
 
         }
     }
+    //测试用例
     public static void main(String[] args){
         Database database = new Database("cute");
         String sql = "select * from manager";

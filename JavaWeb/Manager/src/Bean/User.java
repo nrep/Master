@@ -3,6 +3,7 @@ import static Utils.HashPassword.getHash;
 import static Utils.Replace.*;
 /**
  * Created by YocyTang on 2017/1/10.
+ * 用户
  */
 public class User {
     private String password;
@@ -17,6 +18,7 @@ public class User {
         this.password = password;
         this.email  = email;
     }
+    //hash密码，用于保存在数据库之中
     public void hashPassword(){
             this.password = getHash(this.password);
 
@@ -26,7 +28,8 @@ public class User {
         newPassword = getHash(newPassword);
         this.newPassword = newPassword;
     }
-
+    //用于由数据库中读出的数据构建User对象，此时并不需要hash处理密码，
+    // 用于拿出来验证hash是否与传过来的密码相符合
     public User(String username, String password){
         this.username = username;
         this.password = password;
@@ -50,7 +53,7 @@ public class User {
     public String getPassword() {
         return password;
     }
-
+    //修改密码所用
     public void setPassword(String password) {
         password = getHash(password);
         this.password = password;

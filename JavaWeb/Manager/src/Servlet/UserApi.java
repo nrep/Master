@@ -18,9 +18,13 @@ import java.util.List;
  * Created by YocyTang on 2017/1/23.
  */
 public class UserApi extends HttpServlet {
-    //前端POST格式：var data = {"username":"username","tel":"21321", "email":"sa@qe.com".....}
-    //              xhr.open("post","manager/user",true)
-    //              xhr.send(JSON.stringify(data));
+    /**前端POST格式：var data = {"username":"username","tel":"21321", "email":"sa@qe.com".....}
+    *             xhr.open("post","manager/user",true)
+    *              xhr.send(JSON.stringify(data));
+    *              xhr.open("delete","manager/user",true)
+     *              xhr.open("put","manager/user",true)
+     *              get时参数请携带在URL中
+    */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");

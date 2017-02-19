@@ -14,12 +14,15 @@ import java.util.List;
 
 /**
  * Created by YocyTang on 2017/1/8.
+ * 客户管理
  */
 public class PeopleDao {
     Database database ;
     public PeopleDao(){
         database = new Database("cute");
     }
+
+    //增加客户
     public boolean add(People people) throws SQLException{
         String username = people.getUsername();
         String sex = people.getSex();
@@ -54,6 +57,7 @@ public class PeopleDao {
         }
         return false;
     }
+    //删除客户
     public boolean delete(People people) throws SQLException{
         String username = people.getUsername();
 
@@ -74,6 +78,7 @@ public class PeopleDao {
         }
         return false;
     }
+    //根据传过来的信息查询单个客户
     public People query(People people){
         String username = people.getUsername();
         if(username == null){
@@ -115,6 +120,7 @@ public class PeopleDao {
         }
         return people;
     }
+    //查询客户集，增加分页处理
     public List<People> query(int page, int limit){
         int index = (page-1)*limit;
         String sql = "select * from manager limit ?,?";
@@ -148,10 +154,12 @@ public class PeopleDao {
         }
         return  res;
     }
+    //没有设定参数时，默认为每页十个客户
     public List<People> query(int page){
         return  query(page,10);
     }
 
+    //修改客户资料
     public boolean edit(People people) throws SQLException{
         String username = people.getUsername();
         String sex  = people.getSex();

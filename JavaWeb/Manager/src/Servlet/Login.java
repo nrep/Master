@@ -18,6 +18,9 @@ import java.io.PrintWriter;
 
 /**
  * Created by YocyTang on 2017/1/10.
+ *  //前端POST格式：var data = {"username":"username","password"："dadada"}
+ //              xhr.open("post","manager/login",true)
+ //              xhr.send(JSON.stringify(data));
  */
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,20 +38,23 @@ public class Login extends HttpServlet {
         boolean isValidUsername = loginService.query();
         PrintWriter out = response.getWriter();
         if(!isValidUsername){
-
+            //不存在用户名
             ErrorInfo errorInfo = new ErrorInfo("用户名不存在");
             String json = gson.toJson(errorInfo);
+            //返回错误信息的json格式
             out.print(json);
             return;
         }
         String password = user.getPassword();
         boolean isValidPassword = loginService.isValidPassword(password);
+        //调用Longinservice的密码验证
         if(!isValidPassword){
             ErrorInfo errorInfo = new ErrorInfo("密码错误");
             String json = gson.toJson(errorInfo);
             out.print(json);
             return;
         }
+        //完成后由服务器生成token，token返回到前端，后面的涉及操作数据的请求都应当携带该token
         Token token = new Token(user.getUsername());
         String strToken = token.getToken();
         JsonToken jsonToken = new JsonToken(strToken);
